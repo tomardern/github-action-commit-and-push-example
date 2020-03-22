@@ -1,0 +1,28 @@
+# Change the event here to suit
+on: [pull_request]
+
+jobs:
+  commit_and_push:
+    runs-on: ubuntu-latest
+    name: Commit a file and push to the branch
+    steps:
+
+      # Checkout the repo that triggered this action, setting the current branch
+      - name: Checkout local repo
+        uses: actions/checkout@v2#
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          path: ./
+
+      # Create any files
+      - name: Create a file
+        run: date > test.txt
+
+      # Set the Email, Name (Feel free to change), commit then push
+      - name: Git Commit
+        run: |
+          git config --global user.email "example-action-you-can-change-this-email@github.com"
+          git config --global user.name "Example action you can change this"
+          git add test.txt
+          git commit -m "Add changes"
+          git push
