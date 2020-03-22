@@ -1,2 +1,7 @@
-# github-action-commit-and-push-example
-An example GitHub Workflow that commits a file, and pushes back to the Pull Request which triggered it
+# An example GitHub action which creates a file, commits it and pushes back to the original branch
+
+This action:
+- Checks out the branch that caused the github action to trigger
+- Creates the file
+- Commits the file
+- Pushes back to the original branch
